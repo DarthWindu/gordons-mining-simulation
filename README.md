@@ -10,3 +10,31 @@
 - Configure `MY_MINER_NAME` in `block.js`
 - Adjust `index.js` logic if necessary
 - Run `npm start`
+
+## Principles and Concepts Implemented
+
+- Idempotency
+- Consensus Protocols
+- Blockchain (basic) --> mining & validation
+
+## Anatomy
+
+### Mine
+
+Logic for mining (searching for new block)
+
+### `Block and Header :: Validate`
+
+Validation logic
+
+### `mempool.js`
+
+Initial pool of transactions
+
+### `Blockchain::add`
+
+Logic for adding a block
+
+### `Blockchain::setChain`
+
+Logic for chain consesus
