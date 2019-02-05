@@ -19,7 +19,7 @@
 
 ## Anatomy
 
-### Mine
+### Blockchain::mine
 
 Logic for mining (searching for new block)
 
