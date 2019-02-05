@@ -7,7 +7,7 @@ const genesisBlock = require('./block').genesisBlock;
 const Blockchain = require('./block').Blockchain;
 const hash = blockContainer.hash;
 
-
+// console.log((genesisBlock.toString()))
 var blockchain = new Blockchain();
 let initMempoolLength = mempool.length;
 // blockchain.setChain([genesisBlock]);
@@ -50,5 +50,3 @@ console.log(`PROCCESSED ALL TRANSACTIONS: ${initMempoolLength == blockchain.chai
 // console.log(getFee(mempool[0]));
 
 // END TESTING ################################
-
-

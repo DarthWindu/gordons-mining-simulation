@@ -101,7 +101,7 @@ class Blockchain {
     mine(startingNonce) {
 
         for (let index = 0; index < this.mempool.length; index ++) {
-            let mHeader = new Header(this.getNextBlockNumber(), this.chain[this.chain.length - 1].getHash(), this.mempool[index], MY_MINER_NAME, startingNonce);
+            let mHeader = new Header(this.getNextBlockNumber(), this.chain[this.chain.length - 1].header.getHash(), this.mempool[index], MY_MINER_NAME, startingNonce);
             if (mHeader.validate()) {
                 return new Block(mHeader, this.mempool[index]);
             }
@@ -128,7 +128,7 @@ class Block {
     }
 
     toString() {
-        return `${this.header.toString()},${this.header_hash},${this.transaction}`;
+        return `${this.header.toString()}\n${this.header_hash}\n${this.transaction}`;
     }
 
     validate() {
@@ -159,9 +159,9 @@ class ExternalBlock extends Block {
 }
 
 class Header {
-    constructor(block_number, prev_block_hash, transaction, miner_name, nonce) {
+    constructor(block_number, prev_header_hash, transaction, miner_name, nonce) {
         this.block_number = block_number;
-        this.prev_block_hash = prev_block_hash;
+        this.prev_header_hash = prev_header_hash;
         this.transaction = transaction;
         this.transaction_hash = hash(transaction);
         this.miner_name = miner_name;
@@ -172,11 +172,15 @@ class Header {
         let mHash = hash(this.toString());
 
         //TODO: IMPLEMENT!
-        return mHash.charAt(2) == '6';
+        return mHash.substring(0,2) == "00" || mHash.substring(0,2) == "01";
     }
 
     toString() {
-        return `${this.block_number},${this.prev_block_hash},${this.transaction_hash},${this.miner_name},${this.nonce}`;
+        return `${this.block_number},${this.prev_header_hash},${this.transaction_hash},${this.miner_name},${this.nonce}`;
+    }
+
+    getHash() {
+        return hash(this.toString());
     }
 }
 
@@ -186,16 +190,16 @@ var hash = function hash(transaction) {
 
 var genesisBlockData = {
     header: {
-        block_number: 3,
-        prev_block_hash: '006b3c8718f3ec171b62a086ab2d063ef31e1f01ab4eaa68aae1a56cc4a18c56',
-        transaction_hash: '7f8276bedb87d4489547909266569c8ae14669b283d38abd71bc206ccb6729ea',
-        miner_name: 'Steven Gordon',
-        nonce: 37
+        block_number: 1,
+        prev_header_hash: '016f4e81ba08f00aedf3957a4c0413023e57a444446d85635e6bcc8c1f75c630',
+        transaction_hash: '6e2429914ebae157d5e7c19daf19a39b7a85c54e86789963ced01f4d77e6aed6',
+        miner_name: 'SteveGordon',
+        nonce: 84
     },
-    transaction: hashTransMap['7f8276bedb87d4489547909266569c8ae14669b283d38abd71bc206ccb6729ea']
+    transaction: hashTransMap['6e2429914ebae157d5e7c19daf19a39b7a85c54e86789963ced01f4d77e6aed6']
 };
 
-var genesisHeader = new Header(genesisBlockData.header.block_number, genesisBlockData.header.prev_block_hash, genesisBlockData.transaction, genesisBlockData.header.miner_name, genesisBlockData.header.nonce);
+var genesisHeader = new Header(genesisBlockData.header.block_number, genesisBlockData.header.prev_header_hash, genesisBlockData.transaction, genesisBlockData.header.miner_name, genesisBlockData.header.nonce);
 var genesisBlock = new Block(genesisHeader, genesisBlockData.transaction);
 
 
