@@ -1,0 +1,113 @@
+const MEMPOOL = [
+    "Alligator1",
+    "Bear2",
+    "Camel3",
+    "Dolphin4",
+    "Elephant1",
+    "Frog2",
+    "Gorilla3",
+    "Horse4",
+    "Iguana1",
+    "Jackal2",
+    "Kangaroo3",
+    "Lion4",
+    "Mouse1",
+    "Narwhal2",
+    "Octopus3",
+    "Parrot4",
+    "Quail1",
+    "Robbin2",
+    "Skunk3",
+    "Turkey4",
+    "Unicorn1",
+    "Vulture2",
+    "Walrus3",
+    "Yak4",
+    "Zebra5",
+    "Ant5",
+    "Bunny5",
+    "Caribou5",
+    "Dog6",
+    "Eagle6",
+    "Fish6"
+    ];
+
+    /**
+     * Maps a transaction to a hash
+     */
+var transHashMap = {
+    Alligator1:"6e2429914ebae157d5e7c19daf19a39b7a85c54e86789963ced01f4d77e6aed6",
+    Bear2:"1b5f9f73eec52b540a08ae1c3dd28c9e2f3002100fb1a1a1ab62c8eb5b2e1002",
+    Camel3:"7f8276bedb87d4489547909266569c8ae14669b283d38abd71bc206ccb6729ea",
+    Dolphin4:"a4400c25f84d25536cb0c2a253c79a11f3041dd8bd725d8708bb77d477ce4165",
+    Elephant1:"e5c50e8159a53e596cd9a5c1d75cd9a0f436cc5abda1c654b17872059bdff51f",
+    Frog2:"7158782841b87095e9b4f84405a56a44957fd904df742ed2cf720708e81f4cf8",
+    Gorilla3:"64dd171b68a7e77bce425d1f506b77ef7c002288a4a729ce9ad26651f22062d7",
+    Horse4:"d1e647dd21e8d31bed2a17dbc74aaee7cf97435bd61ef67a1f39e24adeb2f5be",
+    Iguana1:"f0f0fd9eaf16ece4a0ebcff467135c0f48fdb8300ee92ea2141fe4c54bf77cac",
+    Jackal2:"6481eb6d3fe0f661d2f59d387b9852dc5189c4877990b7d88984ae1f04058172",
+    Kangaroo3:"b29a857a40008b7a27591907d942d430ab0064f2431f6fa1ef1b0c7a148e38a0",
+    Lion4:"bc387e282cc023d9c2dd3afbc57d96cb461ad3e07c29819f3bcb4e12c5b68d02",
+    Mouse1:"07688c9e6e602c8690f0a5aee1371372688f199258754d1d22ed35e22a824f7a",
+    Narwhal2:"9fe6ad65fb38225a987c34a099abbb9dd5b94839dfe8d01eaadcc3cafb135dce",
+    Octopus3:"4eeeccafaf96dd12f7e18d055368efc14a0f9c339b3ca64251cc1e8d43aa951b",
+    Parrot4:"426b8b28c78d5685ebff17473feb6eefb3bca9caedf0e9e52e6c017204d7075e",
+    Quail1:"a990cd3ed96f7b708db5e2b13746abad04a34d541b47cc75eeae02065080dfea",
+    Robbin2:"76968623edb28e7bd46e32d655bf395a8505debff63a0f9d7325536f44a74d5b",
+    Skunk3:"67d24cc4b125ed01a19417d8aa2680b702c76905090955c5cf21b87f31bfc7a3",
+    Turkey4:"345c25929cb71835787534baf78344b7948f0f78061a5e017a4ff6092170eb58",
+    Unicorn1:"0c6983ee759538c32aef98d766a80f7a261f2ca52a474594dd8c48e0aa11557c",
+    Vulture2:"faed54ed6fd2b3db3af42d4b9a3087f24a2345384218a39afbdcfe377e32ced9",
+    Walrus3:"c98517b56426a9aa15b8349205f7c9aa63afe92b2d34cdc1d1e4391b545c0602",
+    Yak4:"c9528e2f9ce5a28a36cce6605ef9df9383a46068755f4724f9567d72cdb55e78",
+    Zebra5:"b36947402b23cfd315f73ef4cabdd4e56597211eb5497c25d21fe77b1a3212f1",
+    Ant5:"eea9d19c9dd7b6c82ec04729a704e7cf87b1a7d485a9a9b4a4c41c37232b952d",
+    Bunny5:"28b09231a88731d02f8d7a70e3cbde32512d8ed99c5e32ee2f3f6529f83bdc3c",
+    Caribou5:"d5d61ee3fa3e5bed1b542b7baa6c68c5eb3b3b2498c55019a57521062068140c",
+    Dog6:"e68423f90f82ad49fc1ee08ac65fb2b6a27369eba94de65fb1926ce21b17522c",
+    Eagle6:"9d307a68f0e6bc99e8d6d0c78e1efaee9715f889fe4c3d53b3056844176712e8",
+    Fish6:"fd8e84f176a167082e0339a916bb02e8f6c25beb7b5823ac6aa670f812be8080",
+};
+
+/**
+ * Maps a hash to a transaction
+ */
+var hashTransMap = {
+    '6e2429914ebae157d5e7c19daf19a39b7a85c54e86789963ced01f4d77e6aed6':"Alligator1",
+    '1b5f9f73eec52b540a08ae1c3dd28c9e2f3002100fb1a1a1ab62c8eb5b2e1002':"Bear2",
+    '7f8276bedb87d4489547909266569c8ae14669b283d38abd71bc206ccb6729ea':"Camel3",
+    'a4400c25f84d25536cb0c2a253c79a11f3041dd8bd725d8708bb77d477ce4165':"Dolphin4",
+    'e5c50e8159a53e596cd9a5c1d75cd9a0f436cc5abda1c654b17872059bdff51f':"Elephant1",
+    '7158782841b87095e9b4f84405a56a44957fd904df742ed2cf720708e81f4cf8':"Frog2",
+    '64dd171b68a7e77bce425d1f506b77ef7c002288a4a729ce9ad26651f22062d7':"Gorilla3",
+    'd1e647dd21e8d31bed2a17dbc74aaee7cf97435bd61ef67a1f39e24adeb2f5be':"Horse4",
+    'f0f0fd9eaf16ece4a0ebcff467135c0f48fdb8300ee92ea2141fe4c54bf77cac':"Iguana1",
+    '6481eb6d3fe0f661d2f59d387b9852dc5189c4877990b7d88984ae1f04058172':"Jackal2",
+    'b29a857a40008b7a27591907d942d430ab0064f2431f6fa1ef1b0c7a148e38a0':"Kangaroo3",
+    'bc387e282cc023d9c2dd3afbc57d96cb461ad3e07c29819f3bcb4e12c5b68d02':"Lion4",
+    '07688c9e6e602c8690f0a5aee1371372688f199258754d1d22ed35e22a824f7a':"Mouse1",
+    '9fe6ad65fb38225a987c34a099abbb9dd5b94839dfe8d01eaadcc3cafb135dce':"Narwhal2",
+    '4eeeccafaf96dd12f7e18d055368efc14a0f9c339b3ca64251cc1e8d43aa951b':"Octopus3",
+    '426b8b28c78d5685ebff17473feb6eefb3bca9caedf0e9e52e6c017204d7075e':"Parrot4",
+    'a990cd3ed96f7b708db5e2b13746abad04a34d541b47cc75eeae02065080dfea':"Quail1",
+    '76968623edb28e7bd46e32d655bf395a8505debff63a0f9d7325536f44a74d5b':"Robbin2",
+    '67d24cc4b125ed01a19417d8aa2680b702c76905090955c5cf21b87f31bfc7a3':"Skunk3",
+    '345c25929cb71835787534baf78344b7948f0f78061a5e017a4ff6092170eb58':"Turkey4",
+    '0c6983ee759538c32aef98d766a80f7a261f2ca52a474594dd8c48e0aa11557c':"Unicorn1",
+    'faed54ed6fd2b3db3af42d4b9a3087f24a2345384218a39afbdcfe377e32ced9':"Vulture2",
+    'c98517b56426a9aa15b8349205f7c9aa63afe92b2d34cdc1d1e4391b545c0602':"Walrus3",
+    'c9528e2f9ce5a28a36cce6605ef9df9383a46068755f4724f9567d72cdb55e78':"Yak4",
+    'b36947402b23cfd315f73ef4cabdd4e56597211eb5497c25d21fe77b1a3212f1':"Zebra5",
+    'eea9d19c9dd7b6c82ec04729a704e7cf87b1a7d485a9a9b4a4c41c37232b952d':"Ant5",
+    '28b09231a88731d02f8d7a70e3cbde32512d8ed99c5e32ee2f3f6529f83bdc3c':"Bunny5",
+    'd5d61ee3fa3e5bed1b542b7baa6c68c5eb3b3b2498c55019a57521062068140c':"Caribou5",
+    'e68423f90f82ad49fc1ee08ac65fb2b6a27369eba94de65fb1926ce21b17522c':"Dog6",
+    '9d307a68f0e6bc99e8d6d0c78e1efaee9715f889fe4c3d53b3056844176712e8':"Eagle6",
+    'fd8e84f176a167082e0339a916bb02e8f6c25beb7b5823ac6aa670f812be8080':"Fish6",
+};
+
+var getFee = function(mempoolItem) {
+    return mempoolItem.charAt(mempoolItem.length - 1);
+}
+
+module.exports = {MEMPOOL, getFee, transHashMap, hashTransMap};

@@ -1,0 +1,19 @@
+{
+  "name": "mining-competition",
+  "version": "1.0.0",
+  "description": "Competetive Mining Simulation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "blockchain",
+    "mining"
+  ],
+  "author": "Pujit Mehrotra",
+  "license": "ISC",
+  "dependencies": {
+    "js-sha256": "^0.9.0"
+  }
+}
